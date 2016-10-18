@@ -1,1 +1,36 @@
 # ShripHunter
+
+## mean io stack developing stage
+
+- 1.mean io environmrnt -> single page application SPA
+- 2.part development
+	- 2.1 pi - uart ttl - RS485 - inverter -> modbus/RTU protocol contorl inverter
+	https://www.npmjs.com/package/modbusrtu
+	- 2.2 pi - usb - camera -> streaming server
+	- 2.3 pi - ethernet - public ip - view -> build server
+	- 2.4 pi - website - user story -> design flow chart and web frame
+	- 2.5 android phone - app - public ip - visit website -> app
+- 3.integrate and enhanced development
+	- 3.1 RESTful API 
+	- 3.2 SPA design view
+	- 3.3 streaming server build-in website
+	- 3.4 unit test
+- 4.final test and customer feedback
+
+
+
+
+## resource link
+
+MEAN: AngularJS + NodeJS的REST API开发教程
+https://i.cmgine.net/archives/9688.html
+
+
+第一部分 - MEAN全栈开发：AngularJS实战教程
+http://ju.outofmemory.cn/entry/200208
+
+第二部分 - MEAN全栈开发：使用NodeJS和MongoDB创建REST服务 
+http://ju.outofmemory.cn/entry/200207
+
+第三部分 - MEAN全栈开发：前后端整合
+http://ju.outofmemory.cn/entry/200206
