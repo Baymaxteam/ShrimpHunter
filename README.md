@@ -17,7 +17,10 @@
 	- 3.4 unit test
 - 4.final test and customer feedback
 
-
+## 10/20 work
+- momo & N : 2.1/2.5
+- bei: 2.4 
+- kuo & Rita : 2.2/2.3
 
 
 ## resource link
