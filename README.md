@@ -37,3 +37,35 @@ http://ju.outofmemory.cn/entry/200207
 
 第三部分 - MEAN全栈开发：前后端整合
 http://ju.outofmemory.cn/entry/200206
+
+
+## mjpg-stream
+#### ref: https://github.com/jacksonliam/mjpg-streamer
+
+`
+git clone https://github.com/jacksonliam/mjpg-streamer
+`
+
+### Building & Installation
+
+`
+sudo apt-get install cmake libjpeg8-dev
+
+cd mjpg-streamer-experimental
+make
+sudo make install
+
+`
+
+### Start Http Server
+`
+mjpg_streamer -i "input_uvc.so -d /dev/video0 -f 15 -r 640x480" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www/"
+`
+
+
+
+## nodejs 4.2.6
+`
+sudo apt-get install npm nodejs nodejs-legacy 
+`
+
