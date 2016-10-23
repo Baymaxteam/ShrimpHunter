@@ -49,7 +49,9 @@ git clone https://github.com/jacksonliam/mjpg-streamer
 ### Building & Installation
 `
 sudo apt-get install cmake libjpeg8-dev
+`
 
+`
 cd mjpg-streamer-experimental
 make
 sudo make install
