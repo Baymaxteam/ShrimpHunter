@@ -14,13 +14,18 @@
 	- 3.1 RESTful API 
 	- 3.2 SPA design view
 	- 3.3 streaming server build-in website
-	- 3.4 unit test
+	- 3.4 integrate test
 - 4.final test and customer feedback
 
 ## 10/20 work
 - momo & N : 2.1/2.5
 - bei: 2.4 
 - kuo & Rita : 2.2/2.3
+
+## 10/27 work
+- momo & bei : 2.1 (SW/HW)
+- kuo & Rita : 3.3
+- momo & kuo : 3.4
 
 
 ## resource link
