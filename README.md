@@ -85,3 +85,24 @@ sudo dd bs=1M if=/home/qwedsazxc78/Desktop/pi.img of=/dev/sda5
 sudo dd if=/dev/sda5 of=/home/qwedsazxc78/Desktop/pi.img bs=1M
 `
 
+
+## MongoDB Schema
+### Ref:http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/
+
+Connect to MongoDB and create/use database called ShrimpData
+`
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ShrimpData');
+`
+Create a schema
+`
+var ShrimpSchema = new mongoose.Schema({
+  ID: Number,
+  NAME: String,
+  Motor1: { type: Number, min: -6000, max: 60000 },
+  Motor2: { type: Number, min: -6000, max: 60000 },
+  Motor3: { type: Number, min: -6000, max: 60000 },
+});
+`
+Create a model based on the schema
+`var Shrimp = mongoose.model('Shrimp', ShrimpSchema);`
