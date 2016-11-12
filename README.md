@@ -67,14 +67,21 @@ sudo make install
 mjpg_streamer -i "input_uvc.so -d /dev/video0 -f 15 -r 640x480" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www/"
 `
 
+`
+http://192.168.0.103:8080/?action=stream
+`
 
 
 ## nodejs 4.2.6
 `
 sudo apt-get install npm nodejs nodejs-legacy 
+`
 
 ## dd
+`
 sudo dd bs=1M if=/home/qwedsazxc78/Desktop/pi.img of=/dev/sda5
-
+`
+`
 sudo dd if=/dev/sda5 of=/home/qwedsazxc78/Desktop/pi.img bs=1M
+`
 
