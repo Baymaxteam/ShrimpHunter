@@ -22,6 +22,11 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* PUT /shrimps STOP motor */
+router.put('/', function(req, res, next) {
+  console.log("Receive PUT: STOP MOTOR");
+});
+
 /* Delete /shrimps delete all */
 router.delete('/', function(req, res, next) {
   Shrimp.remove(function (err, shrimps) {
@@ -41,9 +46,10 @@ router.get('/:ID', function(req, res, next) {
 
 /* PUT /shrimps/:ID */
 router.put('/:ID', function(req, res, next) {
-  Shrimp.findAndUpdate({ID: req.params.ID}, req.body, function (err, post) {
+  Shrimp.find({ID: req.params.ID}, function (err, post) {
     if (err) return next(err);
     res.json(post);
+    console.log("Receive PUT:"+post);
   });
 });
 
