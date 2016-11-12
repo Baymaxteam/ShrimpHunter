@@ -15,11 +15,21 @@ router.get('/', function(req, res, next) {
 
 /* POST /shrimps */
 router.post('/', function(req, res, next) {
+  console.log(req.body);
   Shrimp.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
+
+/* Delete /shrimps delete all */
+router.delete('/', function(req, res, next) {
+  Shrimp.remove(function (err, shrimps) {
+    if (err) return next(err);
+    res.json(shrimps);
+  });
+});
+
 
 /* GET /shrimps/ID */
 router.get('/:ID', function(req, res, next) {

@@ -121,5 +121,10 @@ Create a model based on the schema
 
 | Resource (URI) | POST (create)      | GET (read)       | PUT (update)       | DELETE (destroy)    |
 |----------------|--------------------|------------------|--------------------|---------------------|
-| /shrimps/      | create new setting | list setting     | error              | error               |
+| /shrimps/      | create new setting | list setting     | error              | delete all          |
 | /shrimps/:ID   | error              | show setting :ID | update setting :ID | destroy setting :ID |
+
+
+
+curl -H "Content-Type: application/json" -d '{"ID":1,"NAME":"泰國蝦", "Motor1":123,  "Motor2":321,  "Motor3":555}' http://192.168.0.115:3000/shrimps
+
