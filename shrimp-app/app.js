@@ -17,13 +17,6 @@ mongoose.connect('mongodb://localhost/ShrimpData')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-var shrimps = require('./routes/shrimps');
-app.use('/shrimps', shrimps);
-
-
-var index = require('./routes/index');
-//var users = require('./routes/users');
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,8 +30,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+var shrimps = require('./routes/shrimps');
+app.use('/shrimps', shrimps);
+
+var index = require('./routes/index');
+//var users = require('./routes/users');
 app.use('/', index);
 //app.use('/users', users);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
