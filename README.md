@@ -81,6 +81,7 @@ sudo apt-get install npm nodejs nodejs-legacy
 `
 sudo dd bs=1M if=/home/qwedsazxc78/Desktop/pi.img of=/dev/sda5
 `
+
 `
 sudo dd if=/dev/sda5 of=/home/qwedsazxc78/Desktop/pi.img bs=1M
 `
@@ -90,11 +91,15 @@ sudo dd if=/dev/sda5 of=/home/qwedsazxc78/Desktop/pi.img bs=1M
 ### Ref:http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/
 
 Connect to MongoDB and create/use database called ShrimpData
+
 `
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ShrimpData');
 `
+
+
 Create a schema
+
 `
 var ShrimpSchema = new mongoose.Schema({
   ID: Number,
@@ -104,5 +109,17 @@ var ShrimpSchema = new mongoose.Schema({
   Motor3: { type: Number, min: -6000, max: 60000 },
 });
 `
+
+
 Create a model based on the schema
+
 `var Shrimp = mongoose.model('Shrimp', ShrimpSchema);`
+
+
+
+## Restful API
+
+| Resource (URI) | POST (create)      | GET (read)       | PUT (update)       | DELETE (destroy)    |
+|----------------|--------------------|------------------|--------------------|---------------------|
+| /shrimps/      | create new setting | list setting     | error              | error               |
+| /shrimps/:ID   | error              | show setting :ID | update setting :ID | destroy setting :ID |

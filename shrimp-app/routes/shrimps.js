@@ -13,12 +13,37 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* POST /todos */
+/* POST /shrimps */
 router.post('/', function(req, res, next) {
   Shrimp.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
+
+/* GET /shrimps/ID */
+router.get('/:ID', function(req, res, next) {
+  Shrimp.find({ID: req.params.ID}, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* PUT /shrimps/:ID */
+router.put('/:ID', function(req, res, next) {
+  Shrimp.findAndUpdate({ID: req.params.ID}, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* DELETE /shrimps/:ID */
+router.delete('/:ID', function(req, res, next) {
+  Shrimp.findAndRemove({ID: req.params.ID}, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 
 module.exports = router;
