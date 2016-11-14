@@ -85,7 +85,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Table</p>
+                     <table id="dataTable" class="table"></table>
+                </div>
+                <div>
+	          <form id='dataForm' enctype='application/json' method="post" action="http://192.168.0.103:3000/shrimps">
+                  <input name='ID' type='number' class="form-control" placeholder='typing ID..'>
+                  <input name='NAME' type='text' class="form-control" placeholder='typing Name..'>
+                  <input name='Motor1' type='number' class="form-control" placeholder='Motor1 Speed'>
+		  <input name='Motor2' type='number' class="form-control" placeholder='Motor2 Speed'>
+		  <input name='Motor3' type='number' class="form-control" placeholder='Motor3 Speed'>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
                 </div>
             </div>
         </div>
@@ -116,7 +126,12 @@
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+  
+    <!-- Json to table JavaScript -->
+    <script src="js/jsonTable.js"></script> 
 
+     <!-- table_page JavaScript -->
+    <script src="js/table_page.js"></script>   
 </body>
 
 </html>
