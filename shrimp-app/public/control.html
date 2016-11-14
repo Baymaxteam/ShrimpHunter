@@ -102,40 +102,6 @@
             </div>
         </div>  
     </div>    
-    <script type="text/javascript">
-        var i = 1;
-
-        function test() {
-          var r = $('<button/>').attr({
-            class: "btn icon-btn btn-info",
-            id: "field_"+i,
-            text: 'new' + i
-          })
-          .text("Shrimp Brand "+i);
-          $("#btn-list").append(r);
-          var r1 = $('<span/>').attr({
-            type: "span",
-            class: "glyphicon btn-glyphicon glyphicon-fire img-circle text-info"
-          })
-          $("#field_"+i).prepend(r1);
-          i++;
-        }
-
-        $(document).on('click', '#field_1', function(){ 
-             test1()
-        });
-
-        function test1() {
-          var r = $('<input/>').attr({
-            type: "button",
-            class: "btn icon-btn btn-info",
-            id: "field_"+i,
-            value: 'new' + i
-          });
-          $("#btn-list").append(r);
-          i++;
-        }
-    </script>
     <hr>
 
     <!-- Footer -->
@@ -162,6 +128,7 @@
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
+    <script src="js/control.js"></script>
 </body>
 
 </html>
