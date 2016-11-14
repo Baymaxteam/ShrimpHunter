@@ -4,10 +4,11 @@
 //$("#dataTable").jsonTableUpdate("http://192.168.0.103:3000/shrimps");
 
 //$("#dataTable").jsonTableUpdate([{"ID":1,"NAME":"胡椒蝦","Motor1":426,"Motor2":200,"Motor3":15},{"ID":2,"NAME":"泰國蝦","Motor1":123,"Motor2":426,"Motor3":222}]);
-var json_source = [{"ID":1,"NAME":"胡椒蝦","Motor1":426,"Motor2":200,"Motor3":15},{"ID":2,"NAME":"泰國蝦","Motor1":123,"Motor2":426,"Motor3":222}];
 
+var ip = location.host;
+console.log(ip);
 var options = {
-                source: 'http://192.168.0.103:3000/shrimps',
+                source: 'http://'+ip+'/shrimps',
                 rowClass: "classy",
             };
 
