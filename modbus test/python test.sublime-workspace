@@ -1,0 +1,705 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"max",
+				"maxMagXYZ"
+			],
+			[
+				"M",
+				"minMagXYZ"
+			],
+			[
+				"for",
+				"for\tFor Loop"
+			],
+			[
+				"GPIO",
+				"GPIO_PIN_0"
+			],
+			[
+				"int",
+				"int16_t"
+			],
+			[
+				"fo",
+				"for\tFor Loop"
+			],
+			[
+				"es",
+				"else"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "# FreqAddr \t\t2000H = 8192\t\t\n# ControlAddr \t2001H = 8193\n\n# Stop \t\t\t000001 – 0x01\n# FWD direction\t010010  - 0x12 - 18\n# REV direction\t100010  - 0x22 - 34\n# Change\t\t\t110010 - 0x32 - 50\n# minimalmodbus - https://minimalmodbus.readthedocs.io/en/master/installation.html\n\n#!/usr/bin/env python\nimport minimalmodbus\nimport serial\nfrom time import sleep\n\n# modbus address\nMotorFreqAddr = 8193\nMotorControlAddr = 8192\n\n# control value\nMotorSTOP = 1\nMotorFWD = 18\nMotorREV = 34\n\n# Motor Control variable\nCommendSTOP = 0\nCommendFWD = 1\nCommendREV = -1\n# MotorFreq variable\nCommendMotorFreq = 1500\n\ndef writeMotionFreq(DeviceID, value):\n\tDeviceID.write_register(MotorFreqAddr, value, 0, 6)\n\ndef writeMotionControl(DeviceID, value):\n\tif(value == 1):\n\t\tDeviceID.write_register(MotorControlAddr, MotorFWD, 0, 6)\n\telif (value == -1):\n\t\tDeviceID.write_register(MotorControlAddr, MotorREV, 0, 6)\n\telse:\n\t\tDeviceID.write_register(MotorControlAddr, MotorSTOP, 0, 6)\n\ndef StopMotor():\n\tinstrument1.write_register(MotorControlAddr, MotorSTOP, 0, 6)\n\tsleep(0.1) # Time in seconds.\n\tinstrument2.write_register(MotorControlAddr, MotorSTOP, 0, 6)\n\tsleep(0.1) # Time in seconds.\n\tinstrument3.write_register(MotorControlAddr, MotorSTOP, 0, 6)\n\tsleep(0.1) # Time in seconds.\n\ndef writeAllMotionFreq(value1, value2, value3):\n\twriteMotionFreq(instrument1, value1)\n\tsleep(0.1) # Time in seconds.\n\twriteMotionFreq(instrument2, value2)\n\tsleep(0.1) # Time in seconds.\n\twriteMotionFreq(instrument3, value3)\n\tsleep(0.1) # Time in seconds.\n\ndef writeAllMotionControl(value):\n\twriteMotionFreq(instrument1, value)\n\twriteMotionFreq(instrument2, value)\n\twriteMotionFreq(instrument3, value)\n\n\n\n########### init Modbus/RTU functon ###############\ninstrument1 = minimalmodbus.Instrument('COM8',1) # port name (in decimal)\ninstrument1.serial.baudrate = 9600   # Baud\ninstrument1.serial.bytesize = 8\ninstrument1.serial.parity   = serial.PARITY_NONE\ninstrument1.serial.stopbits = 2\ninstrument1.serial.timeout  = 1   # seconds\ninstrument1.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode\n\ninstrument2 = minimalmodbus.Instrument('COM8',2) # port name (in decimal)\ninstrument2.serial.baudrate = 9600   # Baud\ninstrument2.serial.bytesize = 8\ninstrument2.serial.parity   = serial.PARITY_NONE\ninstrument2.serial.stopbits = 2\ninstrument2.serial.timeout  = 1   # seconds\ninstrument2.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode\n\ninstrument3 = minimalmodbus.Instrument('COM8',3) # port name (in decimal)\ninstrument3.serial.baudrate = 9600   # Baud\ninstrument3.serial.bytesize = 8\ninstrument3.serial.parity   = serial.PARITY_NONE\ninstrument3.serial.stopbits = 2\ninstrument3.serial.timeout  = 1   # seconds\ninstrument3.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode\n\n############### main function #############\nwriteMotionFreq(instrument1, CommendMotorFreq)\n\nwriteMotionControl(instrument1, CommendFWD)\n# writeMotionControl(instrument1, CommendREV)\n# writeMotionControl(instrument1, CommendSTOP)\nwriteAllMotionFreq()\n\n\nsleep(1) # Time in seconds.\nStopMotor() # stop all motor\nsleep(1) # Time in seconds.\n\n# writeAllMotionFreq(CommendMotorFreq,CommendMotorFreq,CommendMotorFreq)\n# writeMotionControl(instrument1, CommendFWD)\n# sleep(1) # Time in seconds.\n# StopMotor() # stop all motor\n\n################### End #####################\n",
+			"file": "modbusMaster.py",
+			"file_size": 3375,
+			"file_write_time": 131236477869642611,
+			"settings":
+			{
+				"buffer_size": 3289,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "argutest.py",
+			"settings":
+			{
+				"buffer_size": 165,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Anaconda Python Builder",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Anaconda Python Builder",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"last_filter": "pack c i",
+		"selected_items":
+		[
+			[
+				"pack c i",
+				"Package Control: Install Package"
+			],
+			[
+				"pack c r",
+				"Package Control: Remove Package"
+			],
+			[
+				"pac i ",
+				"Package Control: Remove Repository"
+			],
+			[
+				"Package Control: install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: int",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 432.0
+	},
+	"console":
+	{
+		"height": 342.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter",
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter/modbus test"
+	],
+	"file_history":
+	[
+		"/C/Users/admin/AppData/Roaming/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter/modbus test/python test.sublime-project",
+		"/C/Users/admin/AppData/Roaming/Sublime Text 3/Packages/Anaconda/README.md",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/a BaseAlgorithm/MTK4.4 Golden/README",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/readme",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/sdk_src/Android.mk",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/sdk_lib/ist_ellipsoid.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/CustomerSpec.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/sdk_src/ist_ellipsoid.h",
+		"/C/Users/admin/Desktop/work/istd8303/sdk_src/ist_rotation.c",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/Measure.c",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/Bruce/istd8303_mtk4.4/sdk_src/ist_ellipsoid.c",
+		"/C/Users/admin/Desktop/work/istd8303/Measure.c",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/sdk_src/ist_ellipsoid.c",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/sdk_src/ist_softiron.c",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/sdk_lib/ist_ellipsoid.h",
+		"/C/Users/admin/Documents/algorithm/Algorithm/algorithm_plateform/istd8303/sdk_inc/ist_prep.h",
+		"/C/Users/admin/Documents/sensorservice/Fusion.cpp",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/sdk_lib/ist_calibration.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/sdk_src/ist_ellipsoid.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/ist830x.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/CustomerSpec.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/ISTCompass.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/c 客戶需求/istd8303_ALL/ISTCommon.h",
+		"/C/Users/admin/Documents/algorithm/ReleaseVersion/a BaseAlgorithm/istd8303_ALL/Measure.c",
+		"/C/Users/admin/Documents/algorithm/Algorithm/algorithm_plateform/istd8303/sdk_inc/ist_algebra.h",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/CodeWarrior/CodeWarrior FSFK/FSFK_KL46Z/Sources/orientation.c",
+		"/C/Users/admin/Desktop/work/istd8303/sdk_src/ist_alma.h",
+		"/C/Users/admin/Desktop/work/istd8303/sdk_lib/ist_rotation.h",
+		"/C/Users/admin/Desktop/work/istd8303/sdk_lib/ist_config.h",
+		"/C/Users/admin/AppData/Local/Temp/Mxt90/RemoteFiles/199410_4_1/ist_alma.h",
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter/modbus test/modbusMaster.py",
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter/modbus test/modbusMaster.js",
+		"/C/Users/admin/Documents/GitSource/ShrimpHunter/modbus test/modbusMaster_try.js",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/1 Algorithm build lib/main.c",
+		"/C/Users/admin/Google 雲端硬碟/0 Team Baymax/1 Project/12 Shrimp hunter(WebCam + inverter)/modbus/window setting.txt",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/1 Algorithm developement/Ex24 IIC plane _ algo/USER/main.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_ist8310_Driver&Algorithm_library_CortexM4_Keil/Driver_Data/mcu_prototype/IST8310/main.c",
+		"/C/Users/admin/Desktop/13.txt",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/1 Algorithm developement/Ex24 IIC plane _ algo/IST_LIB/src/ist_calibration.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/1 Algorithm build lib/IST_LIB/inc/IST_LIB.h",
+		"/C/Users/admin/Documents/Doxygen/latex/Makefile",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/IST_LIB/Makefile_list/Arm-Linux/Makefile",
+		"/C/Users/admin/Documents/Doxygen/latex/make.bat",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/IST_LIB/inc/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/mcu_algorithm_xyplane_no acc_cortexM4/Keil_Arm/RTE/RTE_Components.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/IST_LIB/src/IST_LIB.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v2.0.0/inc/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ lib/HARDWARE/IST8310/LIB/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/inc/ist_calibration.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/inc/ist_math.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/inc/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ lib/HARDWARE/IST8310/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ lib/HARDWARE/IST8310/config.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/src/ist_math.c",
+		"/C/Users/admin/Documents/project/GridEye_NuvotonM450/Nuvoton/M451SeriesBSP_CMSIS_v3.00.003/Source Code/I2C_GridEye/main.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/src/ist_calibration.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/v1.1.0/src/IST_LIB.c",
+		"/C/Users/admin/Documents/Matlab/0 crossaxiss simulation/MultitestFunction.m",
+		"/C/Users/admin/Documents/Matlab/0 crossaxiss simulation/SiteCA_golden.m",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane _ algo/keilkilll.bat",
+		"/C/Users/admin/Desktop/approximations.c",
+		"/C/Users/admin/Desktop/approximations.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.1.0/inc/config.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.1.0/inc/ist_math.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.1.0/src/IST_LIB.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.0.0/src/ist_calibration.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.0.0/src/IST_LIB.c",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/KDS/KDS3 FRDM 6DOF Bare Board eCompass/FRDM_KL46Z/Sources/Events.c",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/KDS/KDS3 FRDM 6DOF Bare Board eCompass/FRDM_KL46Z/Sources/Events.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC plane/HARDWARE/IST8310/IST_LIB.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.0.0/src/ist_math.c",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/KDS/KDS3 FRDM 6DOF Bare Board eCompass/FRDM_K22F/Sources/approximations.c",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/KDS/KDS3 FRDM 6DOF Bare Board eCompass/FRDM_KL46Z/Sources/matrix.h",
+		"/C/Users/admin/Google 雲端硬碟/1 iSenTEK/0 Training Document/2 FreescaleSensorFusionRevision5/KDS/KDS3 FRDM 6DOF Bare Board eCompass/FRDM_K22F/Sources/approximations.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/customer/ECOVACS IST8310/main.c",
+		"/C/Users/admin/Documents/Dev++/Multi test C version/main.c",
+		"/C/Users/admin/Documents/Dev++/Multi test Final/src/FA_algorithm.c",
+		"/C/Users/admin/Documents/Dev++/Multi test Final/src/FA_algorithm.h",
+		"/C/Users/admin/Desktop/FA_algorithm.h",
+		"/C/Users/admin/Desktop/FA_algorithm.c",
+		"/D/exchange/algorithm c code/MultitestFunction.m",
+		"/C/Users/admin/Downloads/DevCppPortable/Monokai.syntax",
+		"/C/Users/admin/Downloads/DevCppPortable/config/codeinsertion.ini",
+		"/C/Users/admin/Google 雲端硬碟/house plan/home/新文字文件.txt",
+		"/C/Users/admin/Google 雲端硬碟/house plan/home/office rent.txt",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.1.0/src/ist_calibration.c",
+		"/C/Users/admin/Google 雲端硬碟/house plan/office rent",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC/HARDWARE/IST8310/ist_i2c.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/Ex24 IIC/HARDWARE/IST8310/config.h",
+		"/C/Users/admin/Desktop/buildexample/main.c",
+		"/C/Users/admin/Desktop/buildexample/readme",
+		"/C/Users/admin/Desktop/Tutorial/Cygwin/Makefile",
+		"/D/exchange/CA-T1-C/main.c",
+		"/D/exchange/CA-T1-C/inverse_matrixLib.h",
+		"/D/exchange/CA-T1-C/readme",
+		"/D/exchange/CA-T1-C/NI_AALBase_lvlib_Real_Inverse_Matrix__Triangular_.c",
+		"/D/exchange/CA-T1-C/NI_Matrix_lvlib_Matrix_To_Array___RM.c",
+		"/D/exchange/CA-T1-C/NI_Matrix_lvlib_Multiply___RM_RM.c",
+		"/D/exchange/CA-T1-C/inverse_matrix.c",
+		"/D/exchange/CA-T1-C/NI_AALBase_lvlib_Real_Inverse_Matrix.c",
+		"/D/exchange/CA-T1-C/NI_AALBase_lvlib_Real_A_x_B.c",
+		"/D/exchange/CA-T1-C/NI_AALBase_lvlib_Real_Inverse_Matrix__Cholesky_.c",
+		"/D/exchange/CA-T1-C/NI_AALBase_lvlib_Real_Inverse_Matrix__LU_.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/v1.1.0/src/ist_math.c",
+		"/D/exchange/CA-T1-C/Makefile.cygwin",
+		"/C/Users/admin/Desktop/CA-T1-C/CA-T1-C/inverse_matrix.c",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2015/CCodeGen/include/platform/cygwin-gcc/LVDefs_plat.h",
+		"/C/Program Files (x86)/National Instruments/LabVIEW 2015/CCodeGen/include/platform/cygwin-gcc/LVSysIncludes.h",
+		"/C/Users/admin/Desktop/CA-T1-C/CA-T1-C/main.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_ist8310_Driver&Algorithm_library_CortexM4_Keil/Driver_Data/mcu_prototype/IST_I2C_Example/ist_i2c.c",
+		"/C/Users/admin/Documents/GitSource/stm32_atom/Ex 32 MPU6050+IST8310/HARDWARE/IST8310/IST_LIB.h",
+		"/C/Users/admin/Documents/GitSource/stm32_atom/Ex 32 MPU6050+IST8310/HARDWARE/IST8310/config.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/Algorithm/PM131_v4.0.0/src/ist_math.c",
+		"/C/Users/admin/Documents/GitSource/stm32_atom/Ex 32 MPU6050+IST8310/HARDWARE/IST8310/ist_calibration.h",
+		"/C/Users/admin/Desktop/MTK6.0 boot image.txt",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_STM8_Driver&Algorithm_library/Driver_Data/mcu_prototype/IST_I2C_Example/ist_i2c.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/MCU_Driver_ist8303/mcu_prototype/IST8303/main.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_STM8_Driver&Algorithm_library/Driver_Data/mcu_prototype/IST8303/main.c",
+		"/C/Users/admin/Desktop/CA-T1-C/CA-T1-C/Makefile",
+		"/C/Users/admin/Desktop/CA-T1-C/CA-T1-C/inverse_matrixLib.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_ist8310_Driver&Algorithm_library_CortexM4_Keil/Algorithm/config.h",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_ist8310_Driver&Algorithm_library_CortexM4_Keil/Algorithm/IST_LIB.h",
+		"/C/Users/admin/Desktop/CA-T1-C/CA-T1-C/NI_Matrix_lvlib_Multiply___RM_RM.c",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/Isentek_STM8_Driver&Algorithm_library/Driver_Data/mcu_prototype/IST_I2C_Example/mc3410.h",
+		"/C/Users/admin/Documents/GitSource/epark-rpi3/README.md",
+		"/C/Users/admin/Documents/MCU_Algorithm/FAE/MCU_Driver_ist8310/mcu_prototype/IST8310/main.c",
+		"/D/探索者F4 资料盘(A盘)/6，软件资料/1，软件/amo的编程小工具集合/amo的编程小工具集合.txt"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"C:\\Users\\admin\\Documents\\algorithm\\ReleaseVersion\\c 客戶需求\\Bruce\\istd8303_mtk4.4",
+			"C:\\Users\\admin\\Documents\\algorithm\\ReleaseVersion\\c 客戶需求\\Bruce\\istd8303_mtk4.4\\sdk_src",
+			"C:\\Users\\admin\\Documents\\algorithm\\ReleaseVersion\\c 客戶需求\\Bruce\\istd8303_mtk4.4",
+			"C:\\Users\\admin\\Documents\\algorithm\\ReleaseVersion\\c 客戶需求\\istd8303_ALL",
+			"C:\\Users\\admin\\Documents\\algorithm\\ReleaseVersion\\c 客戶需求\\istd8303_ALL\\sdk_src",
+			"C:\\Users\\admin\\Documents\\sensorservice",
+			"C:\\Users\\admin\\Desktop\\work\\istd8303",
+			"C:\\Users\\admin\\Desktop\\work\\istd8303\\sdk_src",
+			"C:\\Users\\admin\\Desktop\\work\\istd8303",
+			",<current file>",
+			"C:\\Users\\admin\\Documents\\MCU_Algorithm\\Algorithm\\v1.1.0\\src",
+			"<current file>",
+			"C:\\Users\\admin\\Documents\\MCU_Algorithm\\Algorithm\\v1.1.0",
+			"C:\\Users\\admin\\Desktop\\MTK4.4 Golden\\daemon open all (no log)\\istd8303",
+			"C:\\Users\\admin\\Desktop\\MTK4.4 Golden\\daemon open all (no log)\\istd8303\\sdk_src",
+			"C:\\Users\\admin\\Desktop\\MTK4.4 driver test\\build\\tools",
+			"C:\\Users\\admin\\Desktop\\MTK4.4 driver test\\build",
+			"C:\\Users\\admin\\git\\raceflight_community",
+			"C:\\Users\\admin\\git\\raceflight_community\\src",
+			"C:\\Users\\admin\\git\\raceflight_community\\src\\main\\drivers",
+			"C:\\Users\\admin\\git\\raceflight_community",
+			"C:\\Users\\admin\\Desktop\\istd830x",
+			"C:\\Users\\admin\\Desktop\\sensorservice",
+			"C:\\Users\\admin\\git\\cleanflight",
+			"C:\\Users\\admin\\Documents\\GitSource\\Open-Source-Sensor-Fusion\\Sources",
+			"C:\\Users\\admin\\Documents\\GitSource\\MissionPlanner",
+			"C:\\Users\\admin\\git\\cleanflight\\src",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main",
+			"C:\\Users\\admin\\git\\cleanflight",
+			"C:\\px4\\APM-Compass\\libraries\\AP_Compass",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main\\drivers",
+			"C:\\Users\\admin\\Documents\\1 GitSource\\crazepony-firmware-none",
+			"C:\\Users\\admin\\git\\cleanflight",
+			"C:\\Users\\admin\\git\\betaflight",
+			"<current file>",
+			"C:\\Users\\admin\\git\\cleanflight\\src",
+			"<current file>",
+			"C:\\Users\\admin\\git\\cleanflight",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main\\flight",
+			"C:\\Users\\admin\\git\\cleanflight\\src",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main",
+			"<current file>",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main",
+			"C:\\Users\\admin\\git\\cleanflight",
+			"C:\\Users\\admin\\git\\cleanflight\\src\\main",
+			"C:\\Users\\admin\\git\\cleanflight\\src",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main\\drivers",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main\\target",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main\\io",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main\\sensors",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src",
+			"C:\\Users\\admin\\Documents\\1 F3 src code\\SPRacingF3_IST830X\\src\\main",
+			"C:\\px4\\APM-Compass\\ArduCopter",
+			"C:\\px4\\APM-Compass\\libraries",
+			"C:\\px4\\APM-Compass\\libraries\\AP_Compass",
+			"C:\\px4\\APM-Compass\\ArduCopter",
+			"C:\\px4\\APM-Compass\\libraries\\AP_Compass",
+			"<current file>",
+			"C:\\px4\\APM-Compass",
+			"C:\\px4\\APM-Compass\\libraries\\AP_Compass",
+			"C:\\px4\\APM-Compass\\libraries",
+			"C:\\px4\\APM-Compass",
+			"C:\\px4\\ardupilot\\ArduCopter",
+			"C:\\px4\\ardupilot\\libraries\\AP_Compass",
+			"C:\\px4\\ardupilot\\libraries\\AP_HAL",
+			"C:\\Users\\admin\\Documents\\2 AKM\\AKMDFS-master\\akmdfs",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries\\AP_Compass",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries\\AP_HAL",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries\\AP_Compass",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries",
+			"C:\\Users\\admin\\Documents\\1 APM src code env\\ardupilot-ArduCopter-3.2.1.1\\libraries\\AP_Compass",
+			"<current file>",
+			"C:\\dev\\cleanflight\\src\\main",
+			"C:\\dev\\cleanflight\\src",
+			"<current file>",
+			"C:\\dev\\cleanflight\\src",
+			"C:\\dev\\cleanflight\\src\\main\\sensors",
+			"C:\\dev\\cleanflight",
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"linting",
+			"complete",
+			"gSoftIronMatrix",
+			"TILT",
+			"LOG",
+			"ENABLE_Get17",
+			"realti",
+			"readtime",
+			"enable_",
+			"realtime so",
+			"realtime",
+			"Process_Mag",
+			"mag_pr",
+			"mag",
+			"ENABLE_10_ELEMENT_CALIBRATION",
+			"realtim",
+			"get17",
+			"Process_Mag",
+			"process",
+			"ENABLE_10_ELEMENT_CALIBRATION",
+			"Process",
+			"Process_Mag",
+			"process",
+			"12",
+			"choosesample",
+			"ENABLE_10_ELEMENT_CALIBRATION",
+			"ReportMeasurement",
+			"gap_degree",
+			"roll",
+			"ist_angular",
+			"rotation",
+			"roll_gimbal_lock_degree",
+			"bezier_level",
+			"gap_degree",
+			"update",
+			"gap_degree",
+			"roll_gimbal_lock",
+			"enum",
+			"yaw_gimbal_lock",
+			"oquat",
+			"roll_gimbal_lock",
+			"yaw_gimbal_lock",
+			"gap_degree",
+			"roll_gimbal_lock_degree",
+			"_epsilon",
+			"IST_MAG_MIN",
+			"MIN_VALID_CROSS_PRODUCT_MAG_SQ",
+			"MIN_VALID_CROSS_PRODUCT_MAG",
+			"MIN_VALID_CROSS_PRODUCT_MAG_SQ",
+			"ComputeRotation",
+			"gyroVAR",
+			"variance_integrate_output",
+			"getRotationMatrix",
+			"x0",
+			"getRotationMatrix",
+			"update",
+			"up",
+			"north",
+			"acc",
+			"filter",
+			"FIR",
+			"Randy",
+			"randy",
+			"instrument",
+			"writeMotionControl",
+			"MotorFreqAddr",
+			"Mag_LSBtoUT",
+			"Process_LeastSquarMethod",
+			"distanceMagXYZ",
+			"axis",
+			"axis ",
+			"axis",
+			"axis x:93  y:-158  z:-49 ",
+			"axis x:93  y:-153  z:-59 ",
+			"ACCURACY_THRESHOLD_HIGH",
+			"deltaA",
+			"max_r",
+			"IST_SPHERE_DATAMAX_NUM",
+			"IST_HandingCalculation",
+			"IST_FILTER_DATA",
+			"FILTER_R_4",
+			"0.5773762145",
+			"FILTER_R_4",
+			"max_r",
+			"IsClosedData",
+			"c_mdata",
+			"IST_HandingCalculation",
+			"calculateAngularV",
+			"LSB_TO_UT",
+			"IsInitedVector",
+			"FILTER_XYplane",
+			"max_r",
+			"IST_FILTER_DATA",
+			"CheckSphereCoveringRatio",
+			"FILTER_R_100",
+			"FILTER_RADII",
+			"IST_SPHERE_VARIATION_DECREASE_RATIO",
+			"IST_SPHERE_DISTANCE_RADIUS_SCALE",
+			"IST_SPHERE_VARIATION_DECREASE_RATIO",
+			"IST_SPHERE_VARIATION_RATIO",
+			"CalculateFilterRadius",
+			"lv_analysis",
+			"float64",
+			"CGEN_VERSION",
+			"main",
+			"CFLAGS",
+			"CalcualteKData",
+			"m_p2",
+			"isEnableCalibration",
+			"calculateAngularV",
+			"calculateAngularV\\",
+			"Angular",
+			"aData",
+			"collectData",
+			"LSB_TO_UT",
+			"mag_uT",
+			"IST_HIRON_RAD_MAX",
+			"memcpy",
+			"GetBias",
+			"bias",
+			"max_r",
+			"CheckSphereCoveringRatio",
+			"biasnRad",
+			"IST_SPHERE_VARIATION_DECREASE_RATIO",
+			"bias",
+			"DoLeastSquarMethod",
+			"ENABLE_ACCURACY_REPORT\nENABLE_ACCURACY_REPORT\nENABLE_ACCURACY_REPORT",
+			"ENABLE_ACCURACY_REPORT"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"instrument1",
+			"double",
+			"IST8301PRMS",
+			"IST8310_ADDRESS",
+			"ist8310",
+			"8310",
+			"ist8310",
+			"IST8310",
+			"IST8305",
+			"<current file>\n<current file>\nIST8305",
+			"",
+			"IST8303\nIST8303_R_CONF1",
+			"IST8303_R_CONF2\nIST8303_R_CONF1",
+			"\nIST8303_R_CONF1",
+			"IST8303",
+			"ist8303"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "modbusMaster.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346,
+								324
+							]
+						],
+						"settings":
+						{
+							"is_init_dirty_state": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "argutest.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								165,
+								165
+							]
+						],
+						"settings":
+						{
+							"is_init_dirty_state": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 142.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "python test.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mag",
+				"APM-Compass\\Tools\\scripts\\magfit_flashlog.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "process",
+		"selected_items":
+		[
+			[
+				"process",
+				"Process"
+			],
+			[
+				"",
+				"$(OBJECT_DIR)/baro_bmp085_unittest :"
+			]
+		],
+		"width": 1298.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -95,23 +95,25 @@ instrument3.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
 
 ############### main function #############
 
+print('Number of arguments:', len(sys.argv), 'arguments.')
+print('Argument List:', str(sys.argv))
+MotorCommend = sys.argv
+MotorCommend.remove(MotorCommend[0])
 
-writeAllMotionFreq() # control motor
-sleep(1) # Time in seconds.
-StopMotor() # stop all motor
-sleep(1) # Time in seconds.
+try:
+    for x in range(0, 3):
+        val = int(MotorCommend[x])
+except ValueError:
+    print("That's not an number!")
 
+if (MotorCommend[0] is '0' and MotorCommend[1] is '0' and MotorCommend[2] is '0'):
+    print("Stop Motor")
+    StopMotor() # stop all motor
+	sleep(1) # Time in seconds.
+else:
+    print(MotorCommend)
+    writeAllMotionFreq(int(MotorCommend[0],int(MotorCommend[1],int(MotorCommend[2]) # control motor
+	sleep(1) # Time in seconds.
 
-# writeMotionFreq(instrument1, CommendMotorFreq)
-
-# writeMotionControl(instrument1, CommendFWD)
-# writeMotionControl(instrument1, CommendREV)
-# writeMotionControl(instrument1, CommendSTOP)
-
-
-# writeAllMotionFreq(CommendMotorFreq,CommendMotorFreq,CommendMotorFreq)
-# writeMotionControl(instrument1, CommendFWD)
-# sleep(1) # Time in seconds.
-# StopMotor() # stop all motor
 
 ################### End #####################
