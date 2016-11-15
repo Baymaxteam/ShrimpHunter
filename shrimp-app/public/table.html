@@ -84,16 +84,16 @@
     <article>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
                      <table id="dataTable" class="table"></table>
                 </div>
-                <div>
-	          <form id='dataForm' enctype='application/json' method="post" action="http://192.168.0.103:3000/shrimps">
-                  <input name='ID' type='number' class="form-control" placeholder='typing ID..'>
-                  <input name='NAME' type='text' class="form-control" placeholder='typing Name..'>
-                  <input name='Motor1' type='number' class="form-control" placeholder='Motor1 Speed'>
-		  <input name='Motor2' type='number' class="form-control" placeholder='Motor2 Speed'>
-		  <input name='Motor3' type='number' class="form-control" placeholder='Motor3 Speed'>
+                <div class="col-xs-8 col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+	          <form id='dataForm' enctype='application/json' class="form-inline">
+                  <input name='ID' type='number' class="form-control" class="form-control" placeholder='typing ID..'>
+                  <input name='NAME' type='text' class="form-control" class="form-control" placeholder='typing Name..'>
+                  <input name='Motor1' type='number' class="form-control" class="form-control" placeholder='Motor1 Speed'>
+		  <input name='Motor2' type='number' class="form-control" class="form-control" placeholder='Motor2 Speed'>
+		  <input name='Motor3' type='number' class="form-control" class="form-control" placeholder='Motor3 Speed'>
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
                 </div>
