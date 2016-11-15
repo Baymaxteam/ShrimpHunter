@@ -15,3 +15,19 @@ function test() {
   $("#field_"+i).prepend(r1);
   i++;
 }
+
+
+$( "#Stop_button" ).click(function() {
+  $.ajax({
+                url: '/shrimps',
+                type: 'PUT',
+                success: function (result) {
+                  //$("#Stop_button").after("<b>Motors Stop!</b>");
+                }
+            });
+});
+
+
+$.get( "/shrimps", function( data ) {
+  console.log(data);
+});

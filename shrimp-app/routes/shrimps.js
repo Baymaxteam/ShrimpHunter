@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {
 /* PUT /shrimps STOP motor */
 router.put('/', function(req, res, next) {
   console.log("Receive PUT: STOP MOTOR");
+  res.json(req.body);
 });
 
 /* Delete /shrimps delete all */
