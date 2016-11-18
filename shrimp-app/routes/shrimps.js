@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
 
 /* POST /shrimps */
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   Shrimp.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -56,7 +55,7 @@ router.put('/:ID', function(req, res, next) {
 
 /* DELETE /shrimps/:ID */
 router.delete('/:ID', function(req, res, next) {
-  Shrimp.findAndRemove({ID: req.params.ID}, req.body, function (err, post) {
+  Shrimp.findOneAndRemove({ID: req.params.ID}, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
