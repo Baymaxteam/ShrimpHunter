@@ -74,32 +74,36 @@ def writeAllMotionFreq(value1, value2, value3):
 
 
 ########### init Modbus/RTU functon ###############
-instrument1 = minimalmodbus.Instrument(
-    '/dev/ttyUSB0', 1)  # port name (in decimal)
-instrument1.serial.baudrate = 9600   # Baud
-instrument1.serial.bytesize = 8
-instrument1.serial.parity = serial.PARITY_NONE
-instrument1.serial.stopbits = 2
-instrument1.serial.timeout = 1   # seconds
-instrument1.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
+try:
+	instrument1 = minimalmodbus.Instrument(
+		'/dev/ttyUSB0', 1)  # port name (in decimal)
+	instrument1.serial.baudrate = 9600  # Baud
+	instrument1.serial.bytesize = 8
+	instrument1.serial.parity = serial.PARITY_NONE
+	instrument1.serial.stopbits = 2
+	instrument1.serial.timeout = 1  # seconds
+	instrument1.mode = minimalmodbus.MODE_RTU  # rtu or ascii mode
 
-instrument2 = minimalmodbus.Instrument(
-    '/dev/ttyUSB0', 2)  # port name (in decimal)
-instrument2.serial.baudrate = 9600   # Baud
-instrument2.serial.bytesize = 8
-instrument2.serial.parity = serial.PARITY_NONE
-instrument2.serial.stopbits = 2
-instrument2.serial.timeout = 1   # seconds
-instrument2.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
+	instrument2 = minimalmodbus.Instrument(
+		'/dev/ttyUSB0', 2)  # port name (in decimal)
+	instrument2.serial.baudrate = 9600  # Baud
+	instrument2.serial.bytesize = 8
+	instrument2.serial.parity = serial.PARITY_NONE
+	instrument2.serial.stopbits = 2
+	instrument2.serial.timeout = 1  # seconds
+	instrument2.mode = minimalmodbus.MODE_RTU  # rtu or ascii mode
 
-instrument3 = minimalmodbus.Instrument(
-    '/dev/ttyUSB0', 3)  # port name (in decimal)
-instrument3.serial.baudrate = 9600   # Baud
-instrument3.serial.bytesize = 8
-instrument3.serial.parity = serial.PARITY_NONE
-instrument3.serial.stopbits = 2
-instrument3.serial.timeout = 1   # seconds
-instrument3.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
+	instrument3 = minimalmodbus.Instrument(
+		'/dev/ttyUSB0', 3)  # port name (in decimal)
+	instrument3.serial.baudrate = 9600  # Baud
+	instrument3.serial.bytesize = 8
+	instrument3.serial.parity = serial.PARITY_NONE
+	instrument3.serial.stopbits = 2
+	instrument3.serial.timeout = 1  # seconds
+	instrument3.mode = minimalmodbus.MODE_RTU  # rtu or ascii mode
+except ValueError:
+	print("open com port error")
+
 
 ############### main function #############
 
