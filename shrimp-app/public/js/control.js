@@ -60,4 +60,4 @@ $( "#Stop_button" ).click(function() {
 
 //setting video_stream 
 var ip = location.host;
-$( "#video_stream" ).attr("src", 'http://'+ip.slice(0,ip.search(":"))+':8080/?action=stream');
+$( "#video_stream" ).attr("src", 'http://'+ip.slice(0,ip.search(":"))+':8788/?action=stream');

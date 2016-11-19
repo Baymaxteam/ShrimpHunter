@@ -128,3 +128,10 @@ Create a model based on the schema
 
 curl -H "Content-Type: application/json" -d '{"ID":1,"NAME":"泰國蝦", "Motor1":123,  "Motor2":321,  "Motor3":555}' http://192.168.0.115:3000/shrimps
 
+
+##Start Up
+https://seanmcgary.com/posts/deploying-nodejs-applications-with-systemd
+
+
+
+sudo vim /etc/network/interfaces
