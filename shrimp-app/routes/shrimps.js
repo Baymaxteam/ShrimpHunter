@@ -32,7 +32,7 @@ router.put('/', function(req, res, next) {
     args: ['0', '0', '0']
   };
   PythonShell.run('ModbusControlhrimp.py', options, function (err, results) {
-    if (err) throw err;
+    if (err) return next(err);
     // results is an array consisting of messages collected during execution
     console.log('results: %j', results);
   });
@@ -70,7 +70,7 @@ router.put('/:ID', function(req, res, next) {
   //console.log(post);
   //console.log([post[0].Motor1, post[0].Motor2, post[0].Motor3]);
   PythonShell.run('ModbusControlhrimp.py', options, function (err, results) {
-    if (err) throw err;
+    if (err) return next(err);
     // results is an array consisting of messages collected during execution
     console.log('results: %j', results);
   });

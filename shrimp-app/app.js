@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-
 // load mongoose package
 var mongoose = require('mongoose');
 // Use native Node promises
