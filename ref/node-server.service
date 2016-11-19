@@ -1,0 +1,13 @@
+[Unit]
+Description= nodejs HTTP server
+
+[Service]
+WorkingDirectory=/home/ubuntu/Documents/ShrimpHunter/shrimp-app
+ExecStart=/usr/local/bin/nodemon  /home/ubuntu/Documents/ShrimpHunter/shrimp-app/bin/www
+Type=simple
+Restart=always
+RestartSec=10
+
+
+[Install]
+WantedBy=basic.target

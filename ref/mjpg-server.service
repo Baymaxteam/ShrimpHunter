@@ -1,0 +1,11 @@
+[Unit]
+Description=mjpg server
+
+[Service]
+ExecStart=/usr/local/bin/mjpg_streamer -i "input_uvc.so -d /dev/video0 -f 15 -r 640x480" -o "output_http.so -p 8788"
+Type=simple
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=basic.target
