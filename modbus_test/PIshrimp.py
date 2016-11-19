@@ -74,7 +74,8 @@ def writeAllMotionFreq(value1, value2, value3):
 
 
 ########### init Modbus/RTU functon ###############
-instrument1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1)  # port name (in decimal)
+instrument1 = minimalmodbus.Instrument(
+    '/dev/ttyUSB0', 1)  # port name (in decimal)
 instrument1.serial.baudrate = 9600   # Baud
 instrument1.serial.bytesize = 8
 instrument1.serial.parity = serial.PARITY_NONE
@@ -82,7 +83,8 @@ instrument1.serial.stopbits = 2
 instrument1.serial.timeout = 1   # seconds
 instrument1.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
 
-instrument2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2)  # port name (in decimal)
+instrument2 = minimalmodbus.Instrument(
+    '/dev/ttyUSB0', 2)  # port name (in decimal)
 instrument2.serial.baudrate = 9600   # Baud
 instrument2.serial.bytesize = 8
 instrument2.serial.parity = serial.PARITY_NONE
@@ -90,7 +92,8 @@ instrument2.serial.stopbits = 2
 instrument2.serial.timeout = 1   # seconds
 instrument2.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
 
-instrument3 = minimalmodbus.Instrument('/dev/ttyUSB0', 3)  # port name (in decimal)
+instrument3 = minimalmodbus.Instrument(
+    '/dev/ttyUSB0', 3)  # port name (in decimal)
 instrument3.serial.baudrate = 9600   # Baud
 instrument3.serial.bytesize = 8
 instrument3.serial.parity = serial.PARITY_NONE
@@ -106,25 +109,25 @@ MotorCommend = sys.argv
 MotorCommend.remove(MotorCommend[0])
 
 try:
-    for x in range(0, 3):
-        val = int(MotorCommend[x])
+	for x in range(0, 3):
+		val = int(MotorCommend[x])
 except ValueError:
-    print("That's not an number!")
+	print("That's not an number!")
 
 if (MotorCommend[0] is '0' and MotorCommend[1] is '0' and MotorCommend[2] is '0'):
-    print("Stop Motor")
-    try:
-    	StopMotor()
+	print("Stop Motor")
+	try:
+		StopMotor()
 	except ValueError:
-    	print("StopMotor error")    
-    sleep(1)
+		print("StopMotor error")
+	sleep(1)
 else:
-    print(MotorCommend)
-    try:
-    	writeAllMotionFreq(int(MotorCommend[0]), int(MotorCommend[1]), int(MotorCommend[2]))
+	print(MotorCommend)
+	try:
+		writeAllMotionFreq(int(MotorCommend[0]), int(MotorCommend[1]), int(MotorCommend[2]))
 	except ValueError:
-    	print("MotorCommend error")
-    sleep(1)
+		print("MotorCommend error")
+	sleep(1)
 
 print("End program")
 
