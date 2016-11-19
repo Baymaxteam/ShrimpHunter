@@ -4,6 +4,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Shrimp = require('../models/Shrimp.js');
 
+var PythonShell = require('python-shell');
+
 
 /* GET /shrimps listing. */
 router.get('/', function(req, res, next) {
@@ -23,6 +25,17 @@ router.post('/', function(req, res, next) {
 
 /* PUT /shrimps STOP motor */
 router.put('/', function(req, res, next) {
+  var options = {
+    mode: 'text',
+    pythonPath: '/usr/bin/python3',
+    pythonOptions: ['-u'],
+    args: ['0', '0', '0']
+  };
+  PythonShell.run('ModbusControlhrimp.py', options, function (err, results) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', results);
+  });
   console.log("Receive PUT: STOP MOTOR");
   res.json(req.body);
 });
@@ -48,8 +61,22 @@ router.get('/:ID', function(req, res, next) {
 router.put('/:ID', function(req, res, next) {
   Shrimp.find({ID: req.params.ID}, function (err, post) {
     if (err) return next(err);
+    var options = {
+    mode: 'text',
+    pythonPath: '/usr/bin/python3',
+    pythonOptions: ['-u'],
+    args: [post[0].Motor1, post[0].Motor2, post[0].Motor3]
+  };
+  //console.log(post);
+  //console.log([post[0].Motor1, post[0].Motor2, post[0].Motor3]);
+  PythonShell.run('ModbusControlhrimp.py', options, function (err, results) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', results);
+  });
+
     res.json(post);
-    console.log("Receive PUT:"+post);
+    //console.log("Receive PUT:"+post);
   });
 });
 
