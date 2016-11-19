@@ -113,11 +113,17 @@ except ValueError:
 
 if (MotorCommend[0] is '0' and MotorCommend[1] is '0' and MotorCommend[2] is '0'):
     print("Stop Motor")
-    StopMotor()
+    try:
+    	StopMotor()
+	except ValueError:
+    	print("StopMotor error")    
     sleep(1)
 else:
     print(MotorCommend)
-    writeAllMotionFreq(int(MotorCommend[0]), int(MotorCommend[1]), int(MotorCommend[2]))
+    try:
+    	writeAllMotionFreq(int(MotorCommend[0]), int(MotorCommend[1]), int(MotorCommend[2]))
+	except ValueError:
+    	print("MotorCommend error")
     sleep(1)
 
 print("End program")
