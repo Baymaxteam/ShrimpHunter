@@ -60,6 +60,7 @@ router.get('/:ID', function(req, res, next) {
 /* PUT /shrimps/:ID */
 router.put('/:ID', function(req, res, next) {
   Shrimp.find({ID: req.params.ID}, function (err, post) {
+    console.log("Receive PUT - ID="+req.params.ID);
     if (err) return next(err);
     var options = {
     mode: 'text',

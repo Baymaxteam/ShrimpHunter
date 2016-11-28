@@ -109,16 +109,17 @@ except ValueError:
 
 print('Number of arguments:', len(sys.argv), 'arguments.')
 print('Argument List:', str(sys.argv))
-MotorCommend = sys.argv
-MotorCommend.remove(MotorCommend[0])
+MotorSpeedCommend = sys.argv
+MotorSpeedCommend.remove(MotorSpeedCommend[0])
+MotorCommend=[0,0,0]
 
 try:
 	for x in range(0, 3):
-		val = int(MotorCommend[x])
+		val = float(MotorSpeedCommend[x])
 except ValueError:
-	print("That's not an number!")
+	print("That's not an float value!")
 
-if (MotorCommend[0] is '0' and MotorCommend[1] is '0' and MotorCommend[2] is '0'):
+if (MotorSpeedCommend[0] is '0' and MotorSpeedCommend[1] is '0' and MotorSpeedCommend[2] is '0'):
 	print("Stop Motor")
 	try:
 		StopMotor()
@@ -126,9 +127,13 @@ if (MotorCommend[0] is '0' and MotorCommend[1] is '0' and MotorCommend[2] is '0'
 		print("StopMotor error")
 	sleep(1)
 else:
-	print(MotorCommend)
+	print(MotorSpeedCommend)
+	MotorCommend[0] = 0.5*float(MotorSpeedCommend[0])
+	MotorCommend[1] = 0.5*float(MotorSpeedCommend[1]) - 12.5
+	MotorCommend[2] = 0.166*float(MotorSpeedCommend[2]) - 1.45
+	print("MotorSpeedCommend : " + str(MotorCommend))
 	try:
-		writeAllMotionFreq(int(MotorCommend[0]), int(MotorCommend[1]), int(MotorCommend[2]))
+		writeAllMotionFreq(float(MotorCommend[0]), float(MotorCommend[1]), float(MotorCommend[2]))
 	except ValueError:
 		print("MotorCommend error")
 	sleep(1)
