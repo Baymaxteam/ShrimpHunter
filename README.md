@@ -1,6 +1,25 @@
 # ShripHunter
 
+## node-server.service
+sudo systemctl start node-server.service
+sudo systemctl stop node-server.service
+default : http://192.168.0.103:8787
+http/streamin port: 8787/8788
+SSH port: 21
+
+file path
+cd /etc/systemd/system/node-server.service
+
+## how to test 
+cd /home/ubuntu/Documents/ShrimpHunter/shrimp-app
+nodemon 
+
+
+## check commend in system
+nano /etc/systemd/system/node-server.service
+
 ## mean io stack developing stage
+
 
 - 1.mean io environmrnt -> single page application SPA
 - 2.part development
@@ -131,7 +150,5 @@ curl -H "Content-Type: application/json" -d '{"ID":1,"NAME":"泰國蝦", "Motor1
 
 ##Start Up
 https://seanmcgary.com/posts/deploying-nodejs-applications-with-systemd
-
-
 
 sudo vim /etc/network/interfaces
