@@ -128,9 +128,9 @@ if (MotorSpeedCommend[0] is '0' and MotorSpeedCommend[1] is '0' and MotorSpeedCo
 	sleep(1)
 else:
 	print(MotorSpeedCommend)
-	MotorCommend[0] = 0.5*float(MotorSpeedCommend[0])
-	MotorCommend[1] = 0.5*float(MotorSpeedCommend[1]) - 12.5
-	MotorCommend[2] = 0.166*float(MotorSpeedCommend[2]) - 1.45
+	MotorCommend[0] = 50*float(MotorSpeedCommend[0])
+	MotorCommend[1] = 50*float(MotorSpeedCommend[1]) - 1250
+	MotorCommend[2] = 16.67*float(MotorSpeedCommend[2]) - 167.9
 	print("MotorSpeedCommend : " + str(MotorCommend))
 	try:
 		writeAllMotionFreq(float(MotorCommend[0]), float(MotorCommend[1]), float(MotorCommend[2]))
